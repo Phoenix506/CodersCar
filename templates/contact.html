@@ -1,0 +1,114 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us</title>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/stil.css' %}">
+</head>
+
+<body>
+{% include 'includes/navbar.html' %}
+
+<div class="contactus">
+    {% if message_fullname %}
+        <div class="d-flex align-center justify-content-center m-5">
+            <h2>Emailiniz üçün təşəkkürlər {{ message_fullname }}</h2>
+        </div>
+    {% else %}
+        <div class="conicon">
+            <div class="coniconbox">
+                <div class="coniconround">
+                    <i class="fas fa-map-marker-alt"></i>
+                </div>
+                <div class="conicontx">
+                    <h3>Ünvan:</h3><span>
+                        98 West 21th Street, Suite 721 New York NY 10016
+                    </span>
+                </div>
+            </div>
+            <div class="coniconbox">
+                <div class="coniconround">
+                    <i class="fas fa-phone"></i>
+                </div>
+                <div class="conicontx">
+                    <h3>Telefon:</h3><span>
+                        + 994-77-777-77-77
+                    </span>
+                </div>
+            </div>
+            <div class="coniconbox">
+                <div class="coniconround">
+                    <i class="fab fa-telegram-plane"></i>
+                </div>
+                <div class="conicontx">
+                    <h3>Email:</h3><span>
+                        coders@education
+                    </span>
+                </div>
+            </div>
+            <div class="coniconbox">
+                <div class="coniconround">
+                    <i class="fas fa-globe-americas"></i>
+                </div>
+                <div class="conicontx">
+                    <h3>Website :</h3><span>
+                        coders.education
+                    </span>
+                </div>
+            </div>
+        </div>
+
+        <div class="frame">
+            <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d48585.72382245449!2d49.74928432910157!3d40.439684!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1saz!2s!4v1615695318920!5m2!1saz!2s"
+                    width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+
+            <form action="{% url 'car:contact' %}" method="post" class="contform my-5">
+                {% csrf_token %}
+                <div class="wrapper">
+                    <h1>Bizimlə Əlaqə</h1>
+                    <div class="nameem">
+                        <div class="name">
+                            <label for="name" class="label">
+                                Ad və Soyadınız
+                            </label>
+                            <input type="text" placeholder="Ad və Soyadınız" name="message_fullname" id="name">
+                        </div>
+                        <div class="email">
+                            <label for="email" class="label">
+                                Email adresiniz
+                            </label>
+                            <input type="text" placeholder="Email adresiniz" name="message_email" id="email">
+                        </div>
+                    </div>
+                    <div class="subject">
+                        <label for="subject" class="label">
+                            Mövzü
+                        </label>
+                        <input type="text" placeholder="Mövzü" name="subject" id="subject">
+                    </div>
+                    <div class="message">
+                        <label for="message" class="label">
+                            İsmarıcınız
+                        </label>
+                        <textarea placeholder="İsmarıcınız" name="message" id="message" cols="10" rows="5"></textarea>
+                    </div>
+                    <button type="submit" class="send">İsmarıcı Göndər</button>
+                </div>
+            </form>
+        </div>
+    {% endif %}
+</div>
+
+{% include 'includes/footer.html' %}
+
+<script src="https://kit.fontawesome.com/a35bdfc92f.js" crossorigin="anonymous"></script>
+
+</body>
+
+</html>

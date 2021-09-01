@@ -1,0 +1,57 @@
+{% extends 'layout.html' %}
+{% load static %}
+{% block title %}Compare{% endblock %}
+{% block body %}
+    <div class="row row-cols-1 row-cols-md-2 ">
+        {% for car in compare_posts %}
+            <div class="card mx-4 my-4" style="width: 18rem">
+                <img style="width: 100%; height: 200px; object-fit: fill"
+                        {% for p in photos %}
+                            {% if p.post == car %}
+                     src="{{ p.image.url }}" href="{% url 'car:detail' car.id %}"
+                            {% endif %}
+                        {% endfor %}
+                     class="card-img-top shekil"
+                     alt="..."
+                />
+                <div class="iconlar">
+                    <a href="{% url 'car:favourite_post' id=car.id %}" title="Seçilənlərə Əlavə et"><i
+                            class="far fa-heart"></i></a>
+                    <a href="{% url 'car:compare_post' id=car.id %}" title="Müqayisədən çıxart"><i
+                            style="color: #2E9BFF" class="fas fa-check-circle"></i></a></div>
+                <a href="{% url 'car:detail' car.id %}">
+                    <div class="card-body pl-3 py-2">
+                        <h5 class="card-title">{{ car.brand }}</h5>
+                        <p class="card-text">{{ car.model }} &#9679; {{ car.year }} il
+                        </p>
+                        <p class="card-text">{{ car.price }} {{ car.currencie }}
+                    </div>
+                </a>
+                <div class="compare">
+                    <h3>Elanın Göstəriciləri :</h3>
+                    <ul class="indicators">
+                        <li>Mühərrikin gücü : {{ car.engine }}</li>
+                        <li>Ban Növü: {{ car.body_type }}</li>
+                        <li>Sürətlər qutusu: {{ car.transmission }}</li>
+                        <li>Yanacaq növü: {{ car.fueltype }} </li>
+                        <li>Mühərrikin gücü a,g: {{ car.power }} </li>
+                        <li>Təchizat: {{ car.supply }} </li>
+                    </ul>
+                </div>
+
+            </div>
+        {% empty %}
+            <div class="compare-empty">
+                <div class="empty-text">
+                    <img src="{% static 'img/media/Comparetemp.png' %}" alt="" style="width: 150px" height="100px">
+                    <p> Müqayisə etmək istədiyiniz elanın üzərində "Müqayisə et" düyməsinə klikləyərək müqayisə üçün
+                        əlavə edin</p>
+                    <a class="btn btn-info" href="/"> <span>Maşın axtarışı</span> </a>
+                </div>
+            </div>
+
+        {% endfor %}
+    </div>
+
+
+{% endblock %}

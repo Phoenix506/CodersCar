@@ -1,0 +1,50 @@
+{% extends 'layout.html' %}
+{% block title %}Detail{% endblock %}
+
+{% block body %}
+
+
+    <div class="partsdet">
+        <div class="partsin">
+            <img
+                    src="{{ parts.shekil.url }}"
+                    alt=""
+            />
+        </div>
+    </div>
+
+    <div class="detailtxt">
+        <h3>{{ parts.ad }} {{ parts.marka }}</h3>
+    </div>
+    <div class="detailtxt d-flex justify-content-between">
+        <div class="detpr">
+            <h4>
+                {{ parts.qiymet }} <sup>{{ parts.mezenne }}</sup>
+            </h4>
+        </div>
+        <div class="detinfo d-flex flex-column">
+            <small>
+                Elanın nömrəsi: {{ parts.id }}
+            </small>
+        </div>
+    </div>
+
+    <div class="detfull">
+        <div class="detlist">
+            <ul>
+                <li><h6>Şəhər: </h6></li>
+                <li><h6>Ad: </h6></li>
+                <li><h6>Model: </h6></li>
+                <li><h6>Qiymət: </h6></li>
+            </ul>
+            <ul class="rightl">
+                <li>{{ parts.sheher }}</li>
+                <li>{{ parts.ad }}</li>
+                <li>{{ parts.marka }}</li>
+                <li><span>{{ parts.qiymet }} {{ parts.mezenne }}</span></li>
+            </ul>
+        </div>
+
+    </div>
+
+{% endblock %}

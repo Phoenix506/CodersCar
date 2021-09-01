@@ -1,0 +1,40 @@
+{% extends 'layout.html' %}
+{% load static %}
+{% block title %}Index{% endblock %}
+{% block body %}
+
+
+    <div class="row row-cols-1 row-cols-md-2 ">
+        {% for part in parts %}
+            <div class="card mx-4 my-4 " style="width: 18rem">
+                <img style="width: 100%; height: 200px; object-fit: fill"
+                     src="{{ part.shekil.url }}" href="{% url 'spareparts:parts_detail' part.id %}"
+                     class="card-img-top shekil"
+                     alt="..."
+                />
+                <div class="qiymet">
+                    {{ part.qiymet }} <sup>{{ part.mezenne }}</sup>
+                </div>
+                <div class="iconlar">
+                    <a href="{% url 'car:favourite_post' id=part.id %}" title="Seçilənlərə Əlavə et"><i
+                            class="far fa-heart"></i></a>
+                    <a href="{% url 'car:compare_post' id=part.id %}" title="Müqayisə et"><img
+                            src="{% static 'img/media/two-cars-in-line.png' %}" alt=""></a>
+                </div>
+                <a href="{% url 'spareparts:parts_detail' part.id %}">
+                    <div class="card-body pl-3 py-2">
+                        <h5 class="card-title">{{ part.ad }}</h5>
+                        <p class="card-text">{{ part.marka }}
+                        </p>
+                    </div>
+                </a>
+                <ul class="list-group list-group-flush ">
+                    <li class="list-group-item">{{ part.sheher }}</li>
+                    <a href="{% url 'spareparts:parts_detail' part.id %}" class="default-btn">
+                        <span>Ətraflı məlumat</span>
+                    </a>
+                </ul>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

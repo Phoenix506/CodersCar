@@ -1,0 +1,59 @@
+<div class="footer">
+    <ul class="first" data-aos="fade-up" data-aos-delay="50">
+        <li><span> Coders </span> Car</li>
+        <li>
+            <p>Far far away, behind the word mountains,
+                far from the countries.</p>
+        </li>
+        <li>
+            <a href="#">
+                <i class="fab fa-twitter"></i>
+            </a>
+            <a href="#">
+                <i class="fab fa-facebook"></i>
+            </a>
+            <a href="#">
+                <i class="fab fa-instagram"></i>
+            </a>
+        </li>
+        <li>
+
+        </li>
+        <li>
+
+        </li>
+    </ul>
+    <ul data-aos="fade-up" data-aos-delay="100">
+        {% if request.user.is_authenticated %}
+            <li>Mənim Hesabım</li>
+            <li><a href="/user/profile/"> <i class="fas fa-chevron-right"></i>Hesabım</a></li>
+            <li><a href="{% url 'user:register' %}"> <i class="fas fa-chevron-right"></i>Qeydiyyat</a></li>
+            <li><a href="/cars/favourites/"><i class="fas fa-chevron-right"></i>Seçdiklərim</a></li>
+        {% else %}
+            <li>Mənim Hesabım</li>
+            <li><a href="{% url 'user:login' %}"> <i class="fas fa-chevron-right"></i>Giriş</a></li>
+        {% endif %}
+
+    </ul>
+
+    <ul data-aos="fade-up" data-aos-delay="150">
+        <li>İnformasiya</li>
+        <li><a href="#"><i class="fas fa-chevron-right"></i> Haqqımızda</a></li>
+        <li><a href="/"><i class="fas fa-chevron-right"></i> Kataloq</a></li>
+        <li><a href="/cars/contact/"><i class="fas fa-chevron-right"></i> Əlaqə</a></li>
+    </ul>
+
+    <ul class="last" data-aos="fade-up" data-aos-delay="200">
+        <li>Sualınız var?</li>
+        <li>
+            <p>203 Fake St. Mountain View</p>
+        </li>
+        <li><a href="">+2 392 3929 210
+        </a></li>
+        <li><a href="">info@yourdomain.com
+        </a></li>
+        <li><a href="">Faq`s</a></li>
+    </ul>
+
+</div>
+

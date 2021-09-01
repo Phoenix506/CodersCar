@@ -1,0 +1,33 @@
+{% extends 'layout.html' %}
+{% load static %}
+{% block title %}Insure{% endblock %}
+{% block body %}
+    <div class="insure">
+        <div class="insup">
+            <h2>Sığortaya ehtiyyacınız var? </h2>
+            <h3> <span> <i> CodersCar </i></span> Promokodunu istifadə edərək əməkdaşı olduğumuz sığorta şirkətlərindən 10% endirim qazanın</h3>
+        </div>
+        <div class="insuback">
+            <div class="insbox">
+                <a href="http://pasha-insurance.az/" target="_blank">
+                    <img src="{% static 'img/media/pasha.png' %}" alt="">
+                    <h4>Pasha Sığorta</h4>
+                </a>
+            </div>
+            <div class="insbox">
+                <a href="http://www.atasigorta.az/az" target="_blank">
+                    <img src="{% static 'img/media/atasigorta.png' %}" alt="">
+                    <h4>Ata Sığorta</h4>
+
+                </a>
+            </div>
+            <div class="insbox">
+                <a href="http://amrahsigorta.az/" target="_blank">
+                    <img src="{% static 'img/media/amrah.png' %}" alt="">
+                    <h4>Amrah Sığorta</h4>
+
+                </a>
+            </div>
+        </div>
+    </div>
+{% endblock %}

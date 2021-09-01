@@ -1,0 +1,40 @@
+{% extends 'layout.html' %}
+{% load static %}
+{% block title %}Favourites{% endblock %}
+{% block body %}
+    <div class="credit">
+        <div class="credup">
+            <h2>Sərfəli kreditlərlə xəyalınızda olan maşını əldə edin </h2>
+            <h3>Əməkdaşlıq etdiyimiz banklar :</h3>
+        </div>
+        <div class="credback">
+            <div class="credbox">
+                <a href="https://www.turanbank.az/" target="_blank">
+                    <img src="{% static 'img/media/turanbank-1.jpg' %}" alt="">
+                    <h4>Turan Bank</h4>
+                    <small>300 ₼ -dən - 30 000 ₼ - dək </small>
+                    <small>16%-dən başlayaraq</small>
+                    <small>48 ayadək</small>
+                </a>
+            </div>
+            <div class="credbox">
+                <a href="https://www.xalqbank.az/az/for-life/services/loans/consumption/" target="_blank">
+                    <img src="{% static 'img/media/xalq_bank_logo.jpg' %}" alt="">
+                    <h4>Xalq Bank</h4>
+                    <small>500 ₼ -dən - 10 000 ₼ - dək </small>
+                    <small>16-20% aralığında</small>
+                    <small> 1-48 ay </small>
+                </a>
+            </div>
+            <div class="credbox">
+                <a href="https://www.expressbank.az/loans/cash-loans" target="_blank">
+                    <img src="{% static 'img/media/express.png' %}" alt="">
+                    <h4>Express Bank</h4>
+                    <small>300 ₼ -dən - 25 000 ₼ - dək </small>
+                    <small>17-29% aralığında</small>
+                    <small> 3-48 ay </small>
+                </a>
+            </div>
+        </div>
+    </div>
+{% endblock %}

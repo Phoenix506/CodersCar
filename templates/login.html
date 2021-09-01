@@ -1,0 +1,32 @@
+{% load crispy_forms_tags %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body class="login" style="background-color: #f2f2f2;">
+<div class="loginbox" style="width: 50rem; margin: 0 auto; display:flex; flex-direction: column; align-items: center" >
+    {% if messages %}
+        {% for message in messages %}
+            <div {% if message.tags %} class="alert alert-{{ message.tags }}"{% endif %}>{{ message }}</div>
+        {% endfor %}
+    {% endif %}
+    <img src="{% static 'img/media/logo.png' %}" alt="">
+    <form method="POST" class="col-md-6 orta">
+        <fieldset class="form-group">
+            {% csrf_token %}
+            {{ forms|crispy }}
+        </fieldset>
+        <div class="orta">
+            <button type="submit" class="btn btn-danger">Daxil Ol</button>
+            <small><a href="/user/register">Hesabınız yoxdur ? Qeydiyyatdan keçin</a></small>
+        </div>
+    </form>
+
+</body>
+</html>

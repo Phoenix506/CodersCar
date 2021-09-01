@@ -1,0 +1,117 @@
+{% extends 'layout.html' %}
+{% load static %}
+{% block title %}Index{% endblock %}
+{% block body %}
+
+    <form method="get" class="filtr">
+        <div class="pi">
+            {{ filtered_cars.form.as_p }}
+        </div>
+        <button class="btn btn-info" type="submit">Axtar</button>
+    </form>
+    <div class="row row-cols-1 row-cols-md-2 d-flex justify-content-center align-items-center">
+
+        {% for car in posts %}
+            <div class="card mx-4 my-4 " style="width: 18rem" data-aos="fade-up" data-aos-delay="{{ 50|add:"50" }}">
+                <img style="width: 100%; height: 200px; object-fit: fill"
+                        {% for p in photos %}
+                            {% if p.post == car %}
+                     src="{{ p.image.url }}" href="{% url 'car:detail' car.id %}"
+                            {% endif %}
+                        {% endfor %}
+                     class="card-img-top shekil"
+                     alt="..."
+                />
+                <div class="qiymet">
+                    {{ car.price }} <sup>{{ car.currencie }}</sup>
+                </div>
+                <div class="iconlar">
+                    {% if request.user.is_authenticated %}
+                        <a href="{% url 'car:favourite_post' id=car.id %}" title="Seçilənlərə Əlavə et">
+                        {% if car.id in favourite %}
+                            <i class="fas fa-heart" style="color: #2E9BFF"></i>
+                        {% else %}
+                            <i class="far fa-heart"></i>
+                        {% endif %}
+                    {% endif %}
+                    </a>
+                    {% if request.user.is_authenticated %}
+
+                        <a href="{% url 'car:compare_post' id=car.id %}" title="Müqayisə et">
+                            {% if car.id in compare %}
+                                <i style="color: #2E9BFF" class="fas fa-check-circle"></i>
+                            {% else %}
+                                <img src="{% static 'img/media/two-cars-in-line.png' %}" alt="">
+                            {% endif %}
+                        </a>
+                    {% else %}
+                        <a href="{% url 'user:login' %}" title="Müqayisə et"><img
+                                src="{% static 'img/media/two-cars-in-line.png' %}" alt="">
+                        </a>
+                    {% endif %}
+                </div>
+                <a href="{% url 'car:detail' car.id %}">
+                    <div class="card-body pl-3 py-2">
+                        <h5 class="card-title">{{ car.brand }}</h5>
+                        <p class="card-text">{{ car.model }} &#9679; {{ car.year }} il &#9679; {{ car.milage }} km
+                        </p>
+                    </div>
+                </a>
+                <ul class="list-group list-group-flush ">
+                    <li class="list-group-item">{{ car.city }}, {{ car.created_date }}</li>
+                    <a href="{% url 'car:detail' car.id %}" class="default-btn">
+                        <span>Ətraflı məlumat</span>
+                    </a>
+                </ul>
+            </div>
+        {% endfor %}
+
+    </div>
+
+
+
+    <nav aria-label="...">
+        <ul class="pagination d-flex justify-content-center align-items-center">
+            {% if posts.has_previous %}
+                <li class="page-item">
+                    <a class="page-link" href="{% url 'index' %}?page=1">İlk Səhifə</a>
+                </li>
+                <li class="page-item">
+                    <a class="page-link" href="{% url 'index' %}?page={{ page.previous_page_number }}"
+                       tabindex="-1">
+                        <i class="fas fa-angle-double-left"></i>
+                    </a>
+                </li>
+
+            {% endif %}
+
+            {% for num in posts.paginator.page_range %}
+
+                {% if posts.number == num %}
+                    <strong>
+                        <li class="page-item active"><a class="page-link"
+                                                        href="{% url 'index' %}?page={{ num }}">{{ num }}</a></li>
+                    </strong>
+                {% elif num > posts.number|add:'-3' and num < posts.number|add:'3' %}
+                    <li class="page-item"><a class="page-link" href="{% url 'index' %}?page={{ num }}">{{ num }}</a>
+                    </li>
+                {% endif %}
+
+            {% endfor %}
+
+
+
+            {% if posts.has_next %}
+                <li class="page-item">
+                    <a class="page-link" href="{% url 'index' %}?page={{ posts.next_page_number }}">
+                        <i class="fas fa-angle-double-right"></i>
+                    </a>
+                </li>
+                <a class="page-link" href="{% url 'index' %}?page={{ posts.paginator.num_pages }}">
+                    Son Səhifə
+                </a>
+            {% endif %}
+        </ul>
+    </nav>
+
+{% endblock %}

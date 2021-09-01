@@ -1,0 +1,54 @@
+{% extends 'layout.html' %}
+{% load static %}
+{% block title %}Favourites{% endblock %}
+{% block body %}
+    <div class="row row-cols-1 row-cols-md-2">
+        {% for car in favourite_posts %}
+            <div class="card mx-4 my-4" style="width: 18rem">
+                <img style="width: 100%; height: 200px; object-fit: fill"
+                        {% for p in photos %}
+                            {% if p.post == car %}
+                     src="{{ p.image.url }}" href="{% url 'car:detail' car.id %}"
+                            {% endif %}
+                        {% endfor %}
+                     class="card-img-top shekil"
+                     alt="..."
+                />
+                <div class="iconlar">
+                    <a href="{% url 'car:favourite_post' id=car.id %}" title="Seçilmişlərdən çıxart">
+                            <i class="fas fa-heart"></i>
+                        <a href="{% url 'car:compare_post' id=car.id %}" title="Müqayisə et"><img
+                                src="{% static 'img/media/two-cars-in-line.png' %}" alt=""></a></div>
+                <a href="{% url 'car:detail' car.id %}">
+                    <div class="card-body pl-3 py-2">
+                        <h5 class="card-title">{{ car.brand }}</h5>
+                        <p class="card-text">{{ car.model }} &#9679; {{ car.year }} il
+                        </p>
+                    </div>
+                </a>
+
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">{{ car.price }} {{ car.currencie }}</li>
+                    <li class="list-group-item">{{ car.milage }} km</li>
+                    <li class="list-group-item">{{ car.created_date }}</li>
+                    <a href="{% url 'car:detail' car.id %}" class="default-btn">
+                        <span>Ətraflı məlumat</span>
+                    </a>
+                </ul>
+
+            </div>
+        {% empty %}
+            <div class="fav-empty">
+                <div class="empty-text">
+                    <img src="{% static 'img/media/Favoritestemp.png' %}" alt="" style="width: 150px" height="100px">
+                    <p> Müqayisə etmək istədiyiniz elanın üzərində "Seçilənlərə Əlavə et" düyməsinə klikləyərək müqayisə
+                        üçün
+                        əlavə edin</p>
+                    <a class="btn btn-info" href="/"> <span>Maşın axtarışı</span> </a>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
+
+{% endblock %}

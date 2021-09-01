@@ -1,0 +1,41 @@
+{% extends 'layout.html' %}
+{% load crispy_forms_tags %}
+{% block title %} Satış Formu {% endblock %}
+
+{% block body %}
+    <form method="post" enctype="multipart/form-data">
+
+        {% csrf_token %}
+        <div class="row">
+            <div class="row col-12">
+                <div class="elan">
+                    <h1>ELAN</h1>
+                    <ul class="pl-5 mt-4">
+                        <li style="list-style-type: disc"> Üç ay ərzində bir nəqliyyat vasitəsi yalnız bir dəfə pulsuz
+                            dərc
+                            oluna bilər.
+                        </li>
+                        <li style="list-style-type: disc"> Üç ay ərzində təkrar və ya oxşar elanlar (marka/model, rəng)
+                            ödənişlidir.
+                        </li>
+                        <li style="list-style-type: disc"> Elanınızı saytın ön sıralarında görmək üçün "İrəli çək"
+                            xidmətindən istifadə edin.
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-6 offset-md-0 flex-wrap bv">
+                {{ form|crispy }}
+            </div>
+
+        </div>
+        <div class="col-12 ml-5">
+            <button type="submit" class="btn btn-danger">Əlavə Et</button>
+
+        </div>
+    </form>
+
+
+{% endblock body %}
+

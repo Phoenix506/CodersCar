@@ -1,0 +1,148 @@
+
+.conicon {
+    width: 80%;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 100px;
+}
+
+.coniconbox {
+    width: 24%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.conicontx {
+    width: 80%;
+    padding: 20px 0;
+    text-align: center;
+}
+
+.coniconround {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    background-color: #d35738;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.coniconround i {
+    color: aliceblue;
+    font-size: 30px;
+}
+
+.frame {
+    width: 90%;
+    margin: auto;
+    padding-top: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.contform {
+    background-color: white;
+    width: 50%;
+    height: 450px;
+}
+
+.contform * {
+    font-family: 'Spectral', serif;
+}
+
+.contform input {
+    border: none;
+    border-bottom: 1px solid rgb(191, 191, 191);
+    outline: none;
+}
+
+.contform input:focus {
+    border-bottom: 1px solid #d35738;
+}
+
+.contform textarea {
+    border: none;
+    border-bottom: 1px solid rgb(191, 191, 191);
+    outline: none;
+}
+
+.contform textarea:focus {
+    border-bottom: 1px solid #d35738;
+}
+
+.name {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+}
+
+.name input {
+    width: 70%;
+    margin: 15px 0;
+}
+
+.email {
+    width: 50%;
+}
+
+.email input {
+    margin: 15px 0;
+}
+
+.nameem {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.subject {
+    width: 100%;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+
+}
+
+.message {
+    display: flex;
+    flex-direction: column;
+}
+
+.message label {
+    padding: 15px 0;
+}
+
+.subject input {
+    margin: 15px 0;
+}
+
+.wrapper {
+    width: 90%;
+    margin: auto;
+}
+
+.label {
+    color: #CF6F2A;
+}
+
+.send {
+    padding: 15px 25px;
+    background-color: #d35738;
+    margin: 15px 0;
+    border-radius: 10px;
+    outline: none;
+    border: none;
+}
+
+.send a {
+    color: white;
+
+}
+

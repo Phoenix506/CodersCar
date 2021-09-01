@@ -1,0 +1,21 @@
+{% extends 'layout.html' %}
+{% load static %}
+{% block title %}Favourites{% endblock %}
+{% block body %}
+
+    <div class="sellingform">
+        <div class="carform">
+            <h3>Maşın satışı: </h3>
+            <a href="{% url 'car:addcar' %}">
+                <img src="{% static 'img/media/carsell.jpg' %}" alt="">
+
+            </a>
+        </div>
+        <div class="partsform">
+            <h3>Ehtiyat hissəsi satışı: </h3>
+            <a href="{% url 'spareparts:addpart' %}">
+                <img src="{% static 'img/media/download.jfif' %}" alt="">
+            </a>
+        </div>
+    </div>
+{% endblock %}

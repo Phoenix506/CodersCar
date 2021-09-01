@@ -1,0 +1,80 @@
+{% extends 'layout.html' %}
+{% block title %}Detail{% endblock %}
+
+{% block body %}
+    <div class="item">
+        <div class="item-inner">
+            {% for p in photos %}
+                <div class="ghost">
+                    <a data-lightbox="shekil" data-title="Maşınlar" href="{{ p.image.url }}">
+                        <div class="ghost-image ">
+                            <img
+                                    src="{{ p.image.url }}"
+                                    alt=""
+                            />
+                        </div>
+                        <span class="ghost-btn"></span>
+                    </a>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+    <div class="detailtxt">
+        <h3>{{ post.brand }} {{ post.model }}, {{ post.engine }}, {{ post.year }} il, {{ post.milage }} km</h3>
+    </div>
+    <div class="detailtxt d-flex justify-content-between">
+        <div class="detpr">
+            <h4>
+                {{ post.price }} <sup>{{ post.currencie }}</sup>
+            </h4>
+        </div>
+        <div class="detinfo d-flex flex-column">
+            <small>
+                Əlavə olunma tarixi: {{ post.created_date }}
+            </small>
+            <small>
+                Elanın nömrəsi: {{ post.id }}
+            </small>
+        </div>
+    </div>
+    <div class="detfull">
+        <div class="detlist">
+            <ul>
+                <li><h6>Şəhər: </h6></li>
+                <li><h6>Marka: </h6></li>
+                <li><h6>Model: </h6></li>
+                <li><h6>Buraxılış ili: </h6></li>
+                <li><h6>Ban növü: </h6></li>
+                <li><h6>Rəng: </h6></li>
+                <li><h6>Mühərrik: </h6></li>
+                <li><h6>Mühərrikin gücü: </h6></li>
+                <li><h6>Yanacaq növü: </h6></li>
+                <li><h6>Yürüş: </h6></li>
+                <li><h6>Sürətlər qutusu: </h6></li>
+                <li><h6>Qiymət: </h6></li>
+            </ul>
+            <ul class="rightl">
+                <li>{{ post.city }}</li>
+                <li>{{ post.brand }}</li>
+                <li>{{ post.model }}</li>
+                <li>{{ post.year }} il</li>
+                <li>{{ post.body_type }}</li>
+                <li>{{ post.color }}</li>
+                <li>{{ post.engine }}</li>
+                <li>{{ post.power }} a.g</li>
+                <li>{{ post.fueltype }}</li>
+                <li>{{ post.milage }} km</li>
+                <li>{{ post.transmission }}</li>
+                <li><span>{{ post.price }} {{ post.currencie }}</span></li>
+            </ul>
+        </div>
+        <div class="detsupply">
+            <ul>
+                {% for sup in post.supply %}
+                    <li>{{ sup }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+
+{% endblock %}
