@@ -11,11 +11,7 @@
 </head>
 <body class="login" style="background-color: #f2f2f2;">
 <div class="loginbox" style="width: 50rem; margin: 0 auto; display:flex; flex-direction: column; align-items: center" >
-    {% if messages %}
-        {% for message in messages %}
-            <div {% if message.tags %} class="alert alert-{{ message.tags }}"{% endif %}>{{ message }}</div>
-        {% endfor %}
-    {% endif %}
+
     <img src="{% static 'img/media/logo.png' %}" alt="">
     <form method="POST" class="col-md-6 orta">
         <fieldset class="form-group">

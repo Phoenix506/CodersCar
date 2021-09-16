@@ -7,24 +7,26 @@ from django.contrib.auth.decorators import login_required
 
 
 def register(request):
-    if request.method == 'POST':
-        form = forms.RegisterForm(request.POST)
-
-        if form.is_valid():
-            username = form.cleaned_data.get('username')
-            password = form.cleaned_data.get('password')
-            newUser = User(username=username)
-            newUser.set_password(password)
-            newUser.save()
-            login(request, newUser)
-            messages.success(request, f'Qeydiyyat uğurla tamamlandı')
-            return redirect('index')
-        context = {'forms': form}
-        return render(request, 'register.html', context)
+    if not request.user.is_authenticated:
+        if request.method == 'POST':
+            form = forms.RegisterForm(request.POST)
+            if form.is_valid():
+                username = form.cleaned_data.get('username')
+                password = form.cleaned_data.get('password')
+                newUser = User(username=username)
+                newUser.set_password(password)
+                newUser.save()
+                login(request, newUser)
+                messages.success(request, f'Qeydiyyat uğurla tamamlandı')
+                return redirect('index')
+            context = {'forms': form}
+            return render(request, 'register.html', context)
+        else:
+            form = forms.RegisterForm()
+            context = {'forms': form}
+            return render(request, 'register.html', context)
     else:
-        form = forms.RegisterForm()
-        context = {'forms': form}
-        return render(request, 'register.html', context)
+        return redirect("index")
 
 
 def loginUser(request):

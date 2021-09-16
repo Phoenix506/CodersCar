@@ -3,7 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from .models import Car, PostImage
 from .forms import SellingForm
-from django.views.generic import CreateView, ListView
+from django.views.generic import CreateView, ListView, TemplateView
 from django.contrib import messages
 from .filters import CarFilter
 from django.core.paginator import Paginator, EmptyPage
@@ -14,7 +14,7 @@ from django.db.models import Q
 def show_all_car_page(request):
     filtered_cars = CarFilter(
         request.GET,
-        queryset=Car.objects.all()
+        queryset=Car.objects.all().order_by("-created_date")
     )
 
     paginator = Paginator(filtered_cars.qs, 6)
@@ -96,12 +96,16 @@ def detail_view(request, id):
     return render(request, 'detail.html', {'post': post, 'photos': photos})
 
 
-def credit_view(request):
-    return render(request, 'credit.html')
+class CreditView(TemplateView):
+    template_name = 'credit.html'
 
 
-def insure_view(request):
-    return render(request, 'insure.html')
+class InsureView(TemplateView):
+    template_name = 'insure.html'
+
+
+class SellingView(TemplateView):
+    template_name = 'selling.html'
 
 
 def contact_view(request):
@@ -120,10 +124,6 @@ def contact_view(request):
         return render(request, 'contact.html', {'message_fullname': message_fullname})
     else:
         return render(request, 'contact.html')
-
-
-def selling_view(request):
-    return render(request, 'selling.html')
 
 
 def filter_city(request, city):
@@ -223,11 +223,13 @@ def compare_post(request, id):
         post.compare.add(request.user)
     return HttpResponseRedirect(post.get_absolute_url())
 
+
 @login_required(login_url='/user/login')
 def AddCarView(request):
     form = SellingForm(request.POST or None, request.FILES or None)
     if form.is_valid():
         a = form.save(commit=False)
+        a.phonenumber = request.user.username
         a.author = request.user
         a.save()
         img = request.FILES.getlist('images')
@@ -239,3 +241,23 @@ def AddCarView(request):
         return redirect('index')
     context = {'form': form}
     return render(request, 'car/car_form.html', context)
+
+
+@login_required(login_url='/user/login')
+def update_announcement(request, id):
+    post = get_object_or_404(Car, id=id, author=request.user)
+    form = SellingForm(instance=post)
+    if request.method == "POST":
+        form = SellingForm(request.POST, instance=post)
+        if form.is_valid():
+            form.save()
+            return redirect("car:announcement")
+
+    return render(request, "update_announcement.html", {"form": form})
+
+
+@login_required(login_url='/user/login')
+def delete_announcement(request, id):
+    post = get_object_or_404(Car, id=id, author=request.user).delete()
+    return redirect("car:announcement")
+

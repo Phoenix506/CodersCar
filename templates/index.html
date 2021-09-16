@@ -2,7 +2,11 @@
 {% load static %}
 {% block title %}Index{% endblock %}
 {% block body %}
-
+    {% if messages %}
+        {% for message in messages %}
+            <div style="text-align: center" {% if message.tags %} class="alert alert-{{ message.tags }}"{% endif %}>{{ message }}</div>
+        {% endfor %}
+    {% endif %}
     <form method="get" class="filtr">
         <div class="pi">
             {{ filtered_cars.form.as_p }}
@@ -29,9 +33,9 @@
                     {% if request.user.is_authenticated %}
                         <a href="{% url 'car:favourite_post' id=car.id %}" title="Seçilənlərə Əlavə et">
                         {% if car.id in favourite %}
-                            <i class="fas fa-heart" style="color: #2E9BFF"></i>
+                            <i class="fas fa-heart" style="color: #ff1515"></i>
                         {% else %}
-                            <i class="far fa-heart"></i>
+                            <i class="far fa-heart" style="color: #ff1515"></i>
                         {% endif %}
                     {% endif %}
                     </a>

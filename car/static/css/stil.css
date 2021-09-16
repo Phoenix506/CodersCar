@@ -383,6 +383,7 @@
     flex-direction: column;
 }
 
+
 .iconlar img {
     filter: invert(14%) sepia(98%) saturate(4214%) hue-rotate(239deg) brightness(90%) contrast(116%);
 

@@ -207,6 +207,7 @@ class Car(models.Model):
     created_date = models.DateTimeField(auto_now_add=True, verbose_name='Əlavə olunma tarixi')
     favourite = models.ManyToManyField(User, related_name='favourite', blank=True)
     compare = models.ManyToManyField(User, related_name='compare', blank=True)
+    phonenumber = models.CharField(max_length=15, null=True)
 
     def __str__(self):
         return self.brand

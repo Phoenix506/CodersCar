@@ -1,5 +1,6 @@
 from django import forms
 from django.contrib.auth.models import User
+from phonenumber_field.formfields import PhoneNumberField
 
 
 class LoginForm(forms.Form):
@@ -8,23 +9,23 @@ class LoginForm(forms.Form):
 
 
 class RegisterForm(forms.Form):
-    username = forms.CharField(max_length=50, label="İstifadəçi adı")
+    username = PhoneNumberField(region="AZ", widget=forms.TextInput(attrs={"placeholder": "Nömrənizi qeyd edin"}),
+                                label=("Telefon Nömrəniz"))
     password = forms.CharField(max_length=20, label="Şifrə", widget=forms.PasswordInput)
 
-    def clean(self):
+    def clean_username(self):
         username = self.cleaned_data.get('username')
-        name = self.cleaned_data.get('name')
-        surname = self.cleaned_data.get('surname')
-        password = self.cleaned_data.get('password')
-        confirm = self.cleaned_data.get('confirm')
-        if password and confirm and password != confirm:
-            raise forms.ValidationError('Şifrələr eyni deyil')
-
-        else:
-            values = {'username': username, 'password': password}
+        if User.objects.filter(username=username).exists():
+            raise forms.ValidationError("Bu nömrə artıq qeydiyyatdan keçib")
+        return username
 
 
 class UserUpdateForm(forms.ModelForm):
+    username = PhoneNumberField(region="AZ", widget=forms.TextInput(attrs={"placeholder": "Nömrənizi qeyd edin"}),
+                                label=("Telefon Nömrəniz"))
+    first_name = forms.CharField(label=("Adınız"))
+    last_name = forms.CharField(label=("Soyadınız"))
+
     class Meta:
         model = User
-        fields = ['username', 'email']
+        fields = ['username', 'first_name', 'last_name']
