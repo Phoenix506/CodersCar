@@ -4,17 +4,49 @@
 {% block body %}
     {% if messages %}
         {% for message in messages %}
-            <div style="text-align: center" {% if message.tags %} class="alert alert-{{ message.tags }}"{% endif %}>{{ message }}</div>
+            <div style="text-align: center" {% if message.tags %}
+                 class="alert alert-{{ message.tags }}"{% endif %}>{{ message }}</div>
         {% endfor %}
     {% endif %}
     <form method="get" class="filtr">
         <div class="pi">
-            {{ filtered_cars.form.as_p }}
-        </div>
-        <button class="btn btn-info" type="submit">Axtar</button>
-    </form>
-    <div class="row row-cols-1 row-cols-md-2 d-flex justify-content-center align-items-center">
+            <div class="searchfilter">
+                <input type="text" name="marka" placeholder="marka">
+                <input type="text" name="model" placeholder="model">
+            </div>
+            <div class="searchfilter">
+                <select name="city">
+                    <option value="-----">Şəhər</option>
+                    {% for city in cities %}
+                        <option value="{{ city }}">{{ city }}</option>
+                    {% endfor %}
+                </select>
 
+                <select name="body_type">
+                    <option value="-----">Ban Növü</option>
+                    {% for body in body_types %}
+                        <option value="{{ body }}">{{ body }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="searchfilter">
+                <select name="year">
+                    <option value="-----">Buraxılış ili</option>
+                    {% for year in years %}
+                        <option value="{{ year }}">{{ year }}</option>
+                    {% endfor %}
+                </select>
+                <select name="transmission">
+                    <option value="-----">Sürətlər qutusu</option>
+                    {% for transmission in transmissions %}
+                        <option value="{{ transmission }}">{{ transmission }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+        </div>
+        <button class="btn btn-danger" type="submit">Axtar</button>
+    </form>
+    <div class="row row-cols-1 row-cols-md-2 d-flex justify-content-center align-items-center">s
         {% for car in posts %}
             <div class="card mx-4 my-4 " style="width: 18rem" data-aos="fade-up" data-aos-delay="{{ 50|add:"50" }}">
                 <img style="width: 100%; height: 200px; object-fit: fill"

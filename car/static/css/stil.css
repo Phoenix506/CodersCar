@@ -686,23 +686,33 @@
 }
 
 .pi {
+    width: 100%;
     display: flex;
-    flex-wrap: wrap;
+    /*flex-wrap: wrap;*/
     justify-content: center;
     align-items: center;
 }
-
+.searchfilter{
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
 .pi p {
     width: 30%;
     padding: 10px;
 }
 
-.pi input, .pi select {
+.searchfilter input, .searchfilter select {
+    width: 70%;
     border-radius: 10px;
     border: none;
+    margin: 15px;
+    padding: 10px;
 }
 
-.pi option {
+.searchfilter option {
     padding: 2px 0px;
     background: white !important;
     border-radius: 10px;
@@ -710,7 +720,7 @@
     transition: 0.4s;
 }
 
-.pi option:hover {
+.searchfilter option:hover {
     background: #959191;
 }
 
