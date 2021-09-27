@@ -1,0 +1,97 @@
+
+footer {
+    height: 80vh;
+    margin-top: 150px;
+    background-image: url("/static/img/media/download.webp");
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.footxt {
+    width: 90%;
+    margin: 0 auto;
+    padding-top: 50px;
+    display: flex;
+    border-bottom: 1px solid white;
+    padding-bottom: 35px;
+    align-items: center;
+    justify-content: space-between;
+}
+.footlogo{
+    width: 30%;
+
+}
+.footmenu{
+    width: 65%;
+}
+.footwr h1 {
+    color: white;
+}
+
+.footbtn button {
+    border: none;
+    outline: none;
+    overflow: hidden;
+}
+.footbtn button:hover a{
+    color: inherit;
+}
+
+.opt {
+    font-size: 15px;
+    color: #ffffff;
+    background: #db2d2e;
+    border: none;
+    outline: none;
+    display: inline-block;
+    font-weight: 700;
+    padding: 14px 18px 14px 24px;
+    /* margin-right: 16px; */
+    border-radius: 2px;
+}
+
+ .email {
+    color: #323232;
+    background: #ffffff;
+}
+
+.footflex,
+.footmenu {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.footflex{
+    width: 90%;
+    margin: 0 auto;
+}
+
+.footlogo img{
+    filter: invert(32%) sepia(74%) saturate(4412%) hue-rotate(340deg) brightness(86%) contrast(99%);
+
+}
+.footul li:first-child{
+    color: white;
+    font-size: 23px;
+    letter-spacing: 2px;
+}
+
+.footul li a, .footlogo p{
+    color: #8D8D8D;
+    transition: 0.4s;
+}
+
+.footul li a:hover{
+    color: #db2d2e;
+}
+
+
+.footul li{
+    padding: 10px 0;
+}
+
+.footul li i{
+    font-size: 14px;
+    padding-right: 4px;
+}

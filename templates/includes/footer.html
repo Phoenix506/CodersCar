@@ -1,59 +1,54 @@
-<div class="footer">
-    <ul class="first" data-aos="fade-up" data-aos-delay="50">
-        <li><span> Coders </span> Car</li>
-        <li>
-            <p>Far far away, behind the word mountains,
-                far from the countries.</p>
-        </li>
-        <li>
-            <a href="#">
-                <i class="fab fa-twitter"></i>
-            </a>
-            <a href="#">
-                <i class="fab fa-facebook"></i>
-            </a>
-            <a href="#">
-                <i class="fab fa-instagram"></i>
-            </a>
-        </li>
-        <li>
+{% load static %}
+{% block head %}
 
-        </li>
-        <li>
+    {% block link %}
+        <link rel="stylesheet" href="{% static 'css/footer.css' %}">
+    {% endblock link %}
 
-        </li>
-    </ul>
-    <ul data-aos="fade-up" data-aos-delay="100">
-        {% if request.user.is_authenticated %}
-            <li>Mənim Hesabım</li>
-            <li><a href="/user/profile/"> <i class="fas fa-chevron-right"></i>Hesabım</a></li>
-            <li><a href="{% url 'user:register' %}"> <i class="fas fa-chevron-right"></i>Qeydiyyat</a></li>
-            <li><a href="/cars/favourites/"><i class="fas fa-chevron-right"></i>Seçdiklərim</a></li>
-        {% else %}
-            <li>Mənim Hesabım</li>
-            <li><a href="{% url 'user:login' %}"> <i class="fas fa-chevron-right"></i>Giriş</a></li>
-        {% endif %}
+{% endblock %}
+<footer>
+        <div class="footxt">
+            <div class="footwr">
+                <h1>Bizimlə əlaqə saxla </h1>
+            </div>
+            <div class="footbtn">
+                <button><a class="opt" href="#"><i class="fas fa-phone"></i>+(994) 051-111-11-11</a></button>
+                <button><a class="opt email" href="#"><i class="fas fa-envelope"></i> pashayev.sahin@gmail.com</a></button>
+            </div>
+        </div>
 
-    </ul>
+        <div class="footflex">
+            <div class="footlogo">
+                <img src="{% static 'img/media/logo.png' %}" alt="">
+                <p>Any questions? Let us know in store at 625 Gloria Union, California, United Stated or call us on (+1) 96 123 8888</p>
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-google"></i></a>
+            </div>
+            <div class="footmenu">
+                <ul class="footul">
+                    <li>Məlumat</li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i>Profiliniz</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i>Müqayisə</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i>Seçdikləriniz</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i>Əlaqə</a></li>
+                </ul>
+                <ul class="footul">
+                    <li>Elanlar</li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i>Minik</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i>Ticari</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i>Moto</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i>Ehtiyyat Hissələri</a></li>
+                </ul>
+                <ul class="footul">
+                    <li>Top Modellər</li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i>Mercedes</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i>BMW</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i>Toyota</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i>Dodge</a></li>
+                </ul>
+            </div>
+        </div>
 
-    <ul data-aos="fade-up" data-aos-delay="150">
-        <li>İnformasiya</li>
-        <li><a href="#"><i class="fas fa-chevron-right"></i> Haqqımızda</a></li>
-        <li><a href="/"><i class="fas fa-chevron-right"></i> Kataloq</a></li>
-        <li><a href="/cars/contact/"><i class="fas fa-chevron-right"></i> Əlaqə</a></li>
-    </ul>
-
-    <ul class="last" data-aos="fade-up" data-aos-delay="200">
-        <li>Sualınız var?</li>
-        <li>
-            <p>203 Fake St. Mountain View</p>
-        </li>
-        <li><a href="">+2 392 3929 210
-        </a></li>
-        <li><a href="">info@yourdomain.com
-        </a></li>
-        <li><a href="">Faq`s</a></li>
-    </ul>
-
-</div>
-
+    </footer>

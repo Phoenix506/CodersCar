@@ -15,6 +15,7 @@ urlpatterns = [
     url(r'(?P<id>\d+)/compare_post/$', views.compare_post, name='compare_post'),
     path('compare/', views.post_compare_list, name='post_compare_list'),
     path('announcement/', views.my_announcement, name='announcement'),
+    path('all-cars/', views.all_announcements, name='all_announcements'),
     path('update-announcement/<int:id>', views.update_announcement, name='update_announcement'),
     path('delete-announcement/<int:id>', views.delete_announcement, name='delete_announcement'),
     path('search_cars', views.search_cars, name='search-cars'),

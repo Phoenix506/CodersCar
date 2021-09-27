@@ -8,15 +8,15 @@
 <link rel="stylesheet" href="{% static 'css/lightbox.min.css' %}">
 <link rel="stylesheet" href="{% static 'css/stil.css' %}">
 <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+{% block head %}
+    {% block link %}
+    {% endblock %}
+{% endblock %}
 
 
 </head>
 <body>
 {% include 'includes/navbar.html' %}
-
-<div style="margin-top:100px;" class="container">
-
-
     {% block body %}
         {% if messages %}
             {% for message in messages %}
@@ -27,10 +27,12 @@
 
 
     {% endblock body %}
-</div>
 {% include 'includes/footer.html' %}
 
 
+
+{% block script %}
+{% endblock %}
 <script src="{% static 'js/app.js' %}"></script>
 <script src="{% static 'js/lightbox-plus-jquery.min.js' %}"></script>
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>

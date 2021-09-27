@@ -2,43 +2,70 @@
 {% load static %}
 {% block title %}Şəhər{% endblock %}
 {% block body %}
-    <div class="row row-cols-1 row-cols-md-2 d-flex justify-content-center align-items-center">
+    <div class="filterwrap">
         {% for car in cities %}
-            <div class="card mx-4 my-4 " style="width: 18rem">
-                <img style="width: 100%; height: 200px; object-fit: fill"
-                        {% for p in photos %}
-                            {% if p.post == car %}
-                     src="{{ p.image.url }}" href="{% url 'car:detail' car.id %}"
-                            {% endif %}
-                        {% endfor %}
-                     class="card-img-top shekil"
-                     alt="..."
-                />
-
-                <div class="iconlar">
-                    <a href="{% url 'car:favourite_post' id=car.id %}" title="Seçilənlərə Əlavə et"><i
-                            class="far fa-heart"></i></a>
-                    <a href="{% url 'car:compare_post' id=car.id %}" title="Müqayisə et"><img
-                            src="{% static 'img/media/two-cars-in-line.png' %}" alt=""></a>
-                </div>
-                <a href="{% url 'car:detail' car.id %}">
-                    <div class="card-body pl-3 py-2">
-                        <h5 class="card-title">{{ car.brand }}</h5>
-                        <p class="card-text">{{ car.model }} &#9679; {{ car.year }} il
-                        </p>
-                    </div>
-                </a>
-                <ul class="list-group list-group-flush ">
-                    <li class="list-group-item">{{ car.price }} {{ car.currencie }}</li>
-                    <li class="list-group-item">{{ car.milage }} km</li>
-                    <li class="list-group-item">{{ car.created_date }}</li>
-                    <a href="{% url 'car:detail' car.id %}" class="default-btn">
-                        <span>Ətraflı məlumat</span>
-                    </a>
-
-                </ul>
-            </div>
-
+                            <div class="col-lg-3 col-md-4 col-sm-6 mix carbox">
+                                <div class="carimg">
+                                    <img class="imgcar"
+                                            {% for p in photos %}
+                                                {% if p.post == car %}
+                                         src="{{ p.image.url }}"
+                                                {% endif %}
+                                            {% endfor %}
+                                         alt="">
+                                    <div class="displaybox">
+                                        <div class="imgboxes">
+                                            <div class="imgbox" title="Ətraflı">
+                                                <div class="iconbox">
+                                                    <a href="{% url 'car:detail' car.id %}"><i class="fas fa-info"></i></a>
+                                                </div>
+                                            </div>
+                                            {% if request.user.is_authenticated %}
+                                                <div class="imgbox" title="Seçdiklərinizə əlavə edin">
+                                                    <a href="{% url 'car:favourite_post' car.id %}">
+                                                        {% if car.id in favourite %}
+                                                            <i class="fas fa-heart" style="color: #DB2D2E"></i>
+                                                        {% else %}
+                                                            <i class="far fa-heart" style="color: #DB2D2E"></i>
+                                                        {% endif %}
+                                                    </a>
+                                                </div>
+                                            {% endif %}
+                                            {% if request.user.is_authenticated %}
+                                                <div class="imgbox" title="Müqayisə et">
+                                                    <a href="{% url 'car:compare_post' car.id %}">
+                                                        {% if car.id in compare %}
+                                                            <img style="filter: invert(34%) sepia(67%) saturate(2877%)
+                                                            hue-rotate(335deg) brightness(82%) contrast(112%);"
+                                                                 src="{% static 'img/media/two-cars-in-line.png' %}"
+                                                                 alt="">
+                                                        {% else %}
+                                                            <img class="imgicon"
+                                                                 src="{% static 'img/media/two-cars-in-line.png' %}"
+                                                                 alt="">
+                                                        {% endif %}
+                                                    </a>
+                                                </div>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="cartext">
+                                    <div class="cartextinner">
+                                        <div id="year">{{ car.year }}</div>
+                                        <h5>{{ car.brand }} | {{ car.model }}</h5>
+                                        <ul class="carinfo">
+                                            <li><span>{{ car.milage }}</span> km</li>
+                                            <li>{{ car.transmission }}</li>
+                                            <li><span>{{ car.power }}</span> a.g</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="carsale">
+                                    <span class="cardetail">Ətraflı</span>
+                                    <h6 id="price">{{ car.price }} {{ car.currencie }}</h6>
+                                </div>
+                            </div>
         {% endfor %}
     </div>
 

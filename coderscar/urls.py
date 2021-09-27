@@ -15,14 +15,14 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from car.views import detail_view, show_all_car_page
+from car.views import detail_view, index_page
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', show_all_car_page, name='index'),
+    path('', index_page, name='index'),
     path('user/', include('user.urls')),
     path('cars/', include("car.urls")),
     path('spare/', include("spareparts.urls")),

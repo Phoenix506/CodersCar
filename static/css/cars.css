@@ -1,0 +1,51 @@
+.carlist {
+    width: 100%;
+    background-image: url('img/bg.webp');
+    background-position: center center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 20vh;
+    text-align: center;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    letter-spacing: 3px;
+    font-weight: 700;
+    font-size: 30px;
+}
+
+.filterside {
+    background-color: #F7F7F7;
+    padding: 30px;
+}
+
+.filterside input {
+    height: 46px;
+    width: 100%;
+    font-size: 15px;
+    color: #727171;
+    padding-left: 20px;
+    border: 1px solid #ebebeb;
+    background: #fff;
+}
+
+.filterside select {
+    width: 100%;
+    font-size: 15px;
+    color: #727171;
+    padding-left: 20px;
+    border: 1px solid #ebebeb;
+    height: 46px;
+    background: #fff;
+    line-height: 46px;
+    border-radius: 0;
+    margin-bottom: 10px;
+    float: none;
+}
+
+.filteroption {
+    background: #f7f7f7;
+    padding: 12px 30px;
+    margin-bottom: 30px;
+}

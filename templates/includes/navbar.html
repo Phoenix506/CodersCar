@@ -1,129 +1,62 @@
 {% load static %}
-<div class="">
-    <ul class="menu1">
-        <li class="logo"><a href="{% url 'index' %}"><img src="{% static 'img/media/logo.png' %}" alt="shekil"></a></li>
-        <li>
-            <form class="d-flex" method=POST action="{% url 'car:search-cars' %}">
+<header>
+    <div class="info">
+        <ul class="infomenu">
+            <li><a href="#"><i class="fas fa-clock"></i> 24/7 Sizin fəaliyyətinizdəyik</a></li>
+            <li><a href="#"><i class="fas fa-envelope"></i> pashayev.sahin@gmail.com</a></li>
+        </ul>
+        <ul class="infomenu1">
+            <li><a href="#"><i class="fas fa-phone"></i>+(994) 051-111-11-11</a></li>
+            <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+            <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+            <li><a href="#"><i class="fab fa-instagram"></i></a></li>
+            <li><a href="#"><i class="fab fa-google"></i></a></li>
+        </ul>
+    </div>
+    <nav>
+        <div class="logo">
+            <a href="/">
+                <img src="{% static 'img/media/logo.png' %}" alt="">
+            </a>
+        </div>
+        <ul class="menu">
+            <li><a href="/">ANA SƏHİFƏ</a></li>
+            <li><a href="{% url 'car:all_announcements' %}">ELANLAR</a></li>
+            <li><a href="{% url 'car:post_compare_list' %}">MÜQAYİSƏ ET</a></li>
+            <li><a href="#">ƏLAQƏ</a></li>
+            <li>
+                <form id="search" method=POST action="{% url 'car:search-cars' %}">
                 {% csrf_token %}
                 <div class="search">
-                    <input class="search-txt" id="txt" type="text" name="searched" placeholder="Axtarış">
-                    <button type="submit" class="search-btn" style="outline: none; border: none;">
-                        <i class="fas fa-search"></i>
-                    </button>
+                    <input class="search-txt" id="txt" type="text" name="searched"  placeholder="Axtarış">
+
                 </div>
             </form>
-        </li>
-        {% if request.user.is_authenticated %}
-            <li class="icons">
-                <a href="{% url 'car:contact' %}">
-                    <i class="far fa-comment-dots"></i>
-                </a>
-                <a href="{% url 'car:contact' %}">
-                    <small>Əlaqə</small>
-                </a>
-            </li>
-            <li class="icons">
-                <a href="{% url 'car:post_favourite_list' %}">
-                    <i class="far fa-heart"></i>
-                </a>
-                <a href="{% url 'car:post_favourite_list' %}">
-                    <small>Seçdikləriniz</small>
-                </a>
-            </li>
-            <li class="icons">
-                <a href="{% url 'car:post_compare_list' %}">
-                    <img src="{% static 'img/media/two-cars-in-line.png' %}" alt="">
-                </a>
-                <a href="{% url 'car:post_compare_list' %}">
-                    <small>Müqayisə</small>
-                </a>
-            </li>
-            <li class="icons">
-                <a href="{% url 'car:selling' %}">
-                    <img src="{% static 'img/media/repair.png' %}" alt="">
-                </a>
-
-                <a href="{% url 'car:selling' %}">
-                    <small>Mən satıram</small>
-                </a>
-            </li>
+            <li><i onclick="myFunction()" class="fa fa-search"></i></li>
+            <li><a href="{% url 'car:post_favourite_list' %}"><i class="far fa-heart"></i></a></li>
             <li>
-                <a href="/user/logout">
-                    <button class="btn btn-outline-info">Çıxış olun</button>
-                </a>
-            </li>
-
-            <li class="icons" id="open">
-                <a href="#">
-                    <i class="fas fa-user-alt"></i>
-                </a>
-                <a href="#">
-                    <small>Şəxsi Kabinet</small>
-                </a>
-                <ul class="dowwn" id="close">
-                    <li>
-                        <a href="{% url 'user:profile' %}">
-                            <i class="fas fa-user-edit"></i>
-                            Hesabım
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{% url 'car:announcement' %}">
-                            <i class="fas fa-car"></i>
-                            Elanlarım
-                        </a>
-                    </li>
-                    <li>
-                        <a href="/cars/favourites/">
-                            <i class="fas fa-heart"></i>
-                            Seçdiklərim
-                        </a>
-                    </li>
-                    <li>
-                        <a href="/cars/compare/">
-                            <img src="{% static 'img/media/two-cars-in-line.png' %}" alt="">
-                            Müqayisə Etdiklərim
-                        </a>
-                    </li>
-                    <li>
-                        <a href="/user/logout">
-                            <i class="fas fa-sign-out-alt"></i>
-                            Çıxış
-                        </a>
-                    </li>
+                <i id="open" class="fas fa-user-alt"></i>
+                <ul id="close" class="">
+                    <li><i class="fas fa-user-edit"></i> <a href="{% url 'user:profile' %}">Profilim</a></li>
+                    <li><i class="fas fa-car"></i><a href="{% url 'car:announcement' %}">Elanlarım</a></li>
+                    <li><img src="{% static 'img/media/16px two-cars-in-line.png' %}" alt=""> <a
+                            href="{% url 'car:post_compare_list' %}">Müqayisə</a></li>
+                    <li><i class="fas fa-heart"></i><a href="{% url 'car:post_favourite_list' %}">Seçdiklərim</a></li>
                 </ul>
-
             </li>
-        {% else %}
-            <li class="icons">
-                <a href="{% url 'car:contact' %}">
-                    <i class="far fa-comment-dots"></i>
-                </a>
-                <a href="{% url 'car:contact' %}">
-                    <small>Əlaqə</small>
-                </a>
-            </li>
-            <li>
-                <a href="/user/login">
-                    <button class="btn btn-outline-info">Daxil Ol</button>
-                </a>
-            </li>
-        {% endif %}
+            <li>{{ request.user.username }}</li>
+            <li><a class="btn btn-danger" href="{% url 'car:selling' %}">Elan Yerləşdir</a></li>
 
 
-    </ul>
+        </ul>
+    </nav>
     <ul class="menu2">
         <li id="minik"><a href="{% url 'car:passenger' %}">Minik</a>
             <div class="mindiv">
                 <ul class="minik1">
                     <li><a href="{% url 'car:milage' %}">Yürüş Məsafəsi ilə</a></li>
                     <li><a href="{% url 'car:year' %}">Yenilər</a></li>
-                    <li><a href="/">Kataloq</a></li>
-                    {#                    <li><a href="#">Dillerlər</a></li>#}
-                    {#                    <li><a href="#">Rəylər</a></li>#}
-                    {#                    <li><a href="#">Video</a></li>#}
-                    {#                    <li><a href="#">Avtomobili Dəyərləndirmək</a></li>#}
-                    {#                    <li><a href="#">Avtomobil xəbərləri</a></li>#}
+                    <li><a href="{% url 'car:all_announcements' %}">Kataloq</a></li>
                 </ul>
                 <ul class="minik2">
                     <li>
@@ -139,7 +72,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="{% url 'car:filter-type' body_type="Hetçbek" %}">
+                        <a href="{% url 'car:filter-type' body_type=" hetçbek" %}">
                             <img class="minimg" src="{% static 'img/media/xecbek.png' %}" alt="">
                             <p>Xecbek</p>
                         </a>
@@ -163,7 +96,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="{% url 'car:filter-type' body_type="Kupe" %}">
+                        <a href="{% url 'car:filter-type' body_type=" kupe" %}">
                             <img class="minimg" src="{% static 'img/media/kupe.png' %}" alt="">
                             <p>Kupe</p>
                         </a>
@@ -193,97 +126,73 @@
             <ul class="ticari">
                 <li>
                     <a href="{% url 'car:filter-type' body_type='Yüngül kommersiya' %}">
-                        <img class="minimg"
-                             src="{% static 'img/media/tr.png' %}"
-                             alt="">
+                        <img class="minimg" src="{% static 'img/media/tr.png' %}" alt="">
                         <p>Yüngül kommersiya</p>
                     </a>
                 </li>
                 <li>
                     <a href="{% url 'car:filter-type' body_type='Yük maşını' %}">
-                        <img class="minimg"
-                             src="{% static 'img/media/qruzovik.png' %}"
-                             alt="">
+                        <img class="minimg" src="{% static 'img/media/qruzovik.png' %}" alt="">
                         <p>Yük maşınları</p>
                     </a>
                 </li>
                 <li>
                     <a href="{% url 'car:filter-type' body_type='Yarı qoşqu traktoru' %}">
-                        <img class="minimg"
-                             src="{% static 'img/media/tyaqaci.png' %}"
-                             alt="">
+                        <img class="minimg" src="{% static 'img/media/tyaqaci.png' %}" alt="">
                         <p>Yarı qoşqu traktorları</p>
                     </a>
                 </li>
                 <li>
                     <a href="{% url 'car:filter-type' body_type='Avtobus' %}">
-                        <img class="minimg"
-                             src="{% static 'img/media/avtobus.png' %}"
-                             alt="">
+                        <img class="minimg" src="{% static 'img/media/avtobus.png' %}" alt="">
                         <p>Avtobuslar</p>
                     </a>
                 </li>
                 <li>
                     <a href="{% url 'car:filter-type' body_type='Qoşqu və yarı qoşqu' %}">
-                        <img class="minimg"
-                             src="{% static 'img/media/priceo.png' %}"
-                             alt="">
+                        <img class="minimg" src="{% static 'img/media/priceo.png' %}" alt="">
                         <p>Qoşqular və yarı qoşqular</p>
                     </a>
                 </li>
                 <li>
                     <a href="{% url 'car:filter-type' body_type='Kənd təsərrüfatı' %}">
-                        <img class="minimg"
-                             src="{% static 'img/media/traktor.png' %}"
-                             alt="">
+                        <img class="minimg" src="{% static 'img/media/traktor.png' %}" alt="">
                         <p>Kənd təsərrüfatı</p>
                     </a>
                 </li>
                 <li>
                     <a href="{% url 'car:filter-type' body_type='Tikinti və yol' %}">
-                        <img class="minimg"
-                             src="{% static 'img/media/yolduzeltme.png' %}"
-                             alt="">
+                        <img class="minimg" src="{% static 'img/media/yolduzeltme.png' %}" alt="">
                         <p>Tikinti və yol</p>
                     </a>
                 </li>
                 <li>
                     <a href="{% url 'car:filter-type' body_type='Yükləyici' %}">
-                        <img class="minimg"
-                             src="{% static 'img/media/yukdasiyici.png' %}"
-                             alt="">
+                        <img class="minimg" src="{% static 'img/media/yukdasiyici.png' %}" alt="">
                         <p>Yükləyicilər</p>
                     </a>
                 </li>
                 <li>
                     <a href="{% url 'car:filter-type' body_type='Yük kranı' %}">
-                        <img class="minimg"
-                             src="{% static 'img/media/avtokran.png' %}"
-                             alt="">
+                        <img class="minimg" src="{% static 'img/media/avtokran.png' %}" alt="">
                         <p>Yük kranları</p>
                     </a>
                 </li>
                 <li>
                     <a href="{% url 'car:filter-type' body_type='Ekskavator' %}">
-                        <img class="minimg"
-                             src="{% static 'img/media/ekskavatori.png' %}"
-                             alt="">
+                        <img class="minimg" src="{% static 'img/media/ekskavatori.png' %}" alt="">
                         <p>Ekskavatorlar</p>
                     </a>
                 </li>
                 <li>
                     <a href="{% url 'car:filter-type' body_type='Buldozer' %}">
-                        <img class="minimg"
-                             src="{% static 'img/media/buldozer.png' %}"
-                             alt="">
+                        <img class="minimg" src="{% static 'img/media/buldozer.png' %}" alt="">
                         <p>Buldozerlər</p>
                     </a>
                 </li>
                 <li>
                     <a href="{% url 'car:filter-type' body_type='İcma Maşını' %}">
-                        <img class="minimg"
-                             src="{% static 'img/media/komunal.png' %}"
-                             alt="">
+                        <img class="minimg" src="{% static 'img/media/komunal.png' %}" alt="">
                         <p>İcma Maşınları</p>
                     </a>
                 </li>
@@ -293,33 +202,25 @@
             <ul class="moto">
                 <li>
                     <a href="{% url 'car:filter-type' body_type='Motosiklet' %}">
-                        <img class="minimg"
-                             src="{% static 'img/media/motos.png' %}"
-                             alt="">
+                        <img class="minimg" src="{% static 'img/media/motos.png' %}" alt="">
                         <p>Moto</p>
                     </a>
                 </li>
                 <li>
                     <a href="{% url 'car:filter-type' body_type='Skuter' %}">
-                        <img class="minimg"
-                             src="{% static 'img/media/skuter.png' %}"
-                             alt="">
+                        <img class="minimg" src="{% static 'img/media/skuter.png' %}" alt="">
                         <p>Skuterlər</p>
                     </a>
                 </li>
                 <li>
                     <a href="{% url 'car:filter-type' body_type='ATV' %}">
-                        <img class="minimg"
-                             src="{% static 'img/media/kvadro.png' %}"
-                             alt="">
+                        <img class="minimg" src="{% static 'img/media/kvadro.png' %}" alt="">
                         <p>ATV-lər</p>
                     </a>
                 </li>
                 <li>
                     <a href="{% url 'car:filter-type' body_type='Qar avtomobili' %}">
-                        <img class="minimg"
-                             src="{% static 'img/media/qarmasini.png' %}"
-                             alt="">
+                        <img class="minimg" src="{% static 'img/media/qarmasini.png' %}" alt="">
                         <p>Qar avtomobilləri</p>
                     </a>
                 </li>
@@ -335,49 +236,49 @@
                 </li>
 
                 <li>
-                    <a href="{% url 'spareparts:filter-ad' ad="Təkərlər və disklər" %}">
+                    <a href="{% url 'spareparts:filter-ad' ad="təkərlər və disklər" %}">
                         <img class="minimg" src="{% static 'img/media/diskler.png' %}" alt="">
                         <p>Təkərlər və disklər</p>
                     </a>
                 </li>
                 <li>
-                    <a href="{% url 'spareparts:filter-ad' ad="Yağlar və avtomobil kimyəvi maddələr" %}">
+                    <a href="{% url 'spareparts:filter-ad' ad="yağlar və avtomobilkimyəvi maddələr " %}">
                         <img class="minimg" src="{% static 'img/media/yaglar.png' %}" alt="">
                         <p>Yağlar və avtomobil kimyəvi maddələr</p>
                     </a>
                 </li>
                 <li>
-                    <a href="{% url 'spareparts:filter-ad' ad="Akkumlyatorlar" %}">
+                    <a href="{% url 'spareparts:filter-ad' ad=" akkumlyatorlar" %}">
                         <img class="minimg" src="{% static 'img/media/akkumlyatorlar.png' %}" alt="">
                         <p>Akkumlyatorlar</p>
                     </a>
                 </li>
                 <li>
-                    <a href="{% url 'spareparts:filter-ad' ad="Bədən hissələri" %}">
+                    <a href="{% url 'spareparts:filter-ad' ad="bədən hissələri" %}">
                         <img class="minimg" src="{% static 'img/media/kuza.png' %}" alt="">
                         <p>Bədən hissələri</p>
                     </a>
                 </li>
                 <li>
-                    <a href="{% url 'spareparts:filter-ad' ad="Elektrik və işıq" %}">
+                    <a href="{% url 'spareparts:filter-ad' ad="elektrik və işıq" %}">
                         <img class="minimg" src="{% static 'img/media/elektrika.png' %}" alt="">
                         <p>Elektrik və işıq</p>
                     </a>
                 </li>
                 <li>
-                    <a href="{% url 'spareparts:filter-ad' ad="Mühərrik və alovlanma sistemi" %}">
+                    <a href="{% url 'spareparts:filter-ad' ad="mühərrik və alovlanma sistemi" %}">
                         <img class="minimg" src="{% static 'img/media/dviqatel.png' %}" alt="">
                         <p>Mühərrik və alovlanma sistemi</p>
                     </a>
                 </li>
                 <li>
-                    <a href="{% url 'spareparts:filter-ad' ad="Aksesuarlar" %}">
+                    <a href="{% url 'spareparts:filter-ad' ad="aksesuarlar" %}">
                         <img class="minimg" src="{% static 'img/media/aksesuarlar.png' %}" alt="">
                         <p>Aksesuarlar</p>
                     </a>
                 </li>
                 <li>
-                    <a href="{% url 'spareparts:filter-ad' ad="Alətlər" %}">
+                    <a href="{% url 'spareparts:filter-ad' ad="alətlər" %}">
                         <img class="minimg" src="{% static 'img/media/instrumenti.png' %}" alt="">
                         <p>Alətlər</p>
                     </a>
@@ -387,8 +288,24 @@
         <li><a href="#">Yoxlanış</a></li>
         <li><a href="{% url 'car:credit' %}">Kredit</a></li>
         <li><a href="{% url 'car:insure' %}">Sığorta</a></li>
-        {#        <li><a href="#">Məqalələr</a></li>#}
         <li><a href="#">Partnerlik</a></li>
-        {#        <li><a href="#">Təkər</a></li>#}
     </ul>
-</div>
+</header>
+
+{% block script %}
+    <script>
+      document.getElementById("open").addEventListener('click', function () {
+          console.log("clicked")
+        document.getElementById("close").classList.toggle('south')
+    })
+        function myFunction() {
+            var x = document.getElementById("search");
+            if (x.style.display === "block") {
+                x.style.display = "none";
+            } else {
+                x.style.display = "block";
+            }
+        }</script>
+
+
+{% endblock %}

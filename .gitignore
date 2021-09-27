@@ -1,4 +1,4 @@
 .env
 db.sqlite3
 media
-car/static/img
+static/img
